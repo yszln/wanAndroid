@@ -15,18 +15,21 @@ import java.lang.reflect.ParameterizedType
  * @description: viewModel activity
  * @history:
  */
-abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity() ,SwipeRefreshLayout.OnRefreshListener{
+abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
+    SwipeRefreshLayout.OnRefreshListener {
 
 
     protected lateinit var mViewModel: VM
 
-    protected var swipeRefreshLayout: SwipeRefreshLayout?=null
+    protected var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
+
         initRefresh()
-        initView()
+        observe()
+        initClick()
         refreshData()
     }
 
@@ -34,9 +37,9 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity() ,SwipeRefr
      * 设置刷新头
      */
     private fun initRefresh() {
-        swipeRefreshLayout=findViewById(R.id.mRefreshLayout)
+        swipeRefreshLayout = findViewById(R.id.mRefreshLayout)
         swipeRefreshLayout?.run {
-                setOnRefreshListener(this@BaseVMActivity)
+            setOnRefreshListener(this@BaseVMActivity)
 
         }
 
@@ -56,10 +59,9 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity() ,SwipeRefr
     /**
      * 刷新完毕
      */
-    protected fun refreshEnd(){
-        swipeRefreshLayout?.isRefreshing=false
+    protected fun refreshEnd() {
+        swipeRefreshLayout?.isRefreshing = false
     }
-
 
 
     /**
@@ -67,10 +69,17 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity() ,SwipeRefr
      */
     abstract fun refreshData()
 
+
+
     /**
-     * 初始化view
+     * 点击事件
      */
-    abstract fun initView()
+    fun initClick() {}
+
+    /**
+     * 设置观察者
+     */
+    abstract fun observe()
 
     private fun initViewModel() {
         //取第一个泛型的class
@@ -78,5 +87,6 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity() ,SwipeRefr
             (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
         //创建viewModel
         mViewModel = ViewModelProvider(this).get(vmClazz)
+
     }
 }

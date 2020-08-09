@@ -1,24 +1,24 @@
-package com.yszln.lib.activity
+package com.yszln.lib.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.yszln.lib.adapter.LoadMoreAdapter
 import com.yszln.lib.viewmodel.LoadMoreViewModel
 
 /**
- * @author: yszln
- * @date: 2020/8/7 21:13
- * @description: 可以加载更多的activity，基于BaseRecyclerViewAdapterHelper适配器
- * @history:
- */
-abstract class BaseLoadMoreActivity<VM : LoadMoreViewModel> : BaseVMActivity<VM>(),
+* @author: yszln
+* @date: 2020/8/9 22:01
+* @description: 可以加载更多的fragment，基于BaseRecyclerViewAdapterHelper适配器
+* @history:
+*/
+abstract class BaseLoadMoreFragment<VM : LoadMoreViewModel> : BaseVMFragment<VM>(),
     OnLoadMoreListener {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initLoadMore()
+
     }
 
     override fun onRefresh() {
@@ -53,6 +53,4 @@ abstract class BaseLoadMoreActivity<VM : LoadMoreViewModel> : BaseVMActivity<VM>
      * 加载更多
      */
     abstract fun loadMoreData()
-
-
 }
