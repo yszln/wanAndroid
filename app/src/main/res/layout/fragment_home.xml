@@ -1,17 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/mRefreshLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mRecyclerView"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/mHomeAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:minHeight="@dimen/title_height"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/homeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200dp"
+                    android:layout_marginTop="@dimen/_90dp"
+                    app:layout_collapseMode="none" />
+
+                <FrameLayout
+                    android:id="@+id/homeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp"
+                    android:background="@color/cyan"
+                    android:paddingHorizontal="@dimen/_15dp"
+                    android:paddingBottom="@dimen/_5dp"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="顶部标题"
+                        android:textColor="@color/textColor"
+
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="@dimen/_30dp"
+                        android:src="@mipmap/weather" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:padding="@dimen/_2dp"
+                        android:src="@mipmap/message" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="@dimen/_60dp"
+                    android:background="@color/cyan"
+                    android:paddingBottom="@dimen/_10dp"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_marginHorizontal="@dimen/_15dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/search"
+                        android:drawablePadding="@dimen/_10dp"
+                        android:paddingHorizontal="@dimen/_5dp"
+                        android:paddingVertical="@dimen/_5dp"
+                        android:text="搜索" />
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_65dp"
+                    android:layout_gravity="top"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin">
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30dp"
+                android:background="@color/blue" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/_12dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

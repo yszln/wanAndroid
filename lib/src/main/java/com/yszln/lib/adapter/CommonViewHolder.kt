@@ -2,7 +2,6 @@ package com.yszln.lib.adapter
 
 import android.view.View
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.yszln.lib.utils.test
 
 /**
 * @author: yszln
@@ -12,6 +11,6 @@ import com.yszln.lib.utils.test
 */
 class CommonViewHolder(view: View) : BaseViewHolder(view){
     init {
-        test()
+
     }
 }

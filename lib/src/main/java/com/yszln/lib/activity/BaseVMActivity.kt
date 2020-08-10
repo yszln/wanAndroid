@@ -18,15 +18,13 @@ import java.lang.reflect.ParameterizedType
 abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
     SwipeRefreshLayout.OnRefreshListener {
 
-
     protected lateinit var mViewModel: VM
 
-    protected var swipeRefreshLayout: SwipeRefreshLayout? = null
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
-
         initRefresh()
         observe()
         initClick()
@@ -40,7 +38,6 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
         swipeRefreshLayout = findViewById(R.id.mRefreshLayout)
         swipeRefreshLayout?.run {
             setOnRefreshListener(this@BaseVMActivity)
-
         }
 
         mViewModel.mRefreshStatus.observe(this, Observer {

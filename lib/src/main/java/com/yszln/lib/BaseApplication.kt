@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.module.LoadMoreModuleConfig.defLoadMoreView
 import com.yszln.lib.widget.CustomLoadMoreView
 
 
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
 
 
 

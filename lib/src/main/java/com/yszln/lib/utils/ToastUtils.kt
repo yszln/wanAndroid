@@ -12,10 +12,8 @@ object ToastUtils {
     fun showToast(
         message: CharSequence
     ) {
-        message?.let {
-            mToast = Toast.makeText(BaseApplication.mContext, it, Toast.LENGTH_SHORT)
-            mToast?.show()
-        }
+        mToast = Toast.makeText(BaseApplication.mContext, message, Toast.LENGTH_SHORT)
+        mToast?.show()
 
 
     }

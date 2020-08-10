@@ -34,7 +34,5 @@ class DiscoverFragment : BaseLoadMoreFragment<DiscoverViewModel>() {
 
     }
 
-    override fun layoutId(): Int {
-        return 0
-    }
+    override fun layoutId()=R.layout.fragment_discover
 }

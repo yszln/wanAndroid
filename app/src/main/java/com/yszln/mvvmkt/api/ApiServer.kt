@@ -2,6 +2,7 @@ package com.yszln.mvvmkt.api
 
 import com.yszln.lib.bean.BaseBean
 import com.yszln.mvvmkt.ui.article.ArticleItemBean
+import com.yszln.mvvmkt.ui.main.home.bean.BannerItemBean
 import kotlinx.coroutines.Deferred
 import okhttp3.Response
 import okhttp3.ResponseBody
@@ -19,4 +20,10 @@ interface ApiServer {
      */
     @GET("article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): BaseBean<PageBean<ArticleItemBean>>
+
+    /**
+     * 首页banner
+     */
+    @GET("/banner/json")
+    suspend fun getHomeBanner(): BaseBean<List<BannerItemBean>>
 }
