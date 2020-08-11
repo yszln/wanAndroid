@@ -30,18 +30,25 @@
                 android:background="@android:color/transparent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+                <com.youth.banner.Banner
                     android:id="@+id/homeBanner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_200dp"
                     android:layout_marginTop="@dimen/_90dp"
                     app:layout_collapseMode="none" />
 
+                <com.yszln.mvvmkt.widget.cate.CateView
+                    android:id="@+id/homeCate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_300dp"
+                    android:paddingHorizontal="@dimen/_12dp" />
+
                 <FrameLayout
                     android:id="@+id/homeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60dp"
-                    android:background="@color/cyan"
+                    android:background="@color/white"
                     android:paddingHorizontal="@dimen/_15dp"
                     android:paddingBottom="@dimen/_5dp"
                     app:layout_collapseMode="pin">
@@ -72,29 +79,29 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/title_height"
+                    android:layout_height="@dimen/_40dp"
                     android:layout_gravity="top"
                     android:layout_marginTop="@dimen/_60dp"
-                    android:background="@color/cyan"
-                    android:paddingBottom="@dimen/_10dp"
+                    android:background="@color/white"
                     app:layout_collapseMode="pin">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30dp"
                         android:layout_marginHorizontal="@dimen/_15dp"
-                        android:background="@color/white"
+                        android:background="@drawable/shape_3dp_gray_ee"
                         android:drawableLeft="@mipmap/search"
                         android:drawablePadding="@dimen/_10dp"
-                        android:paddingHorizontal="@dimen/_5dp"
+                        android:paddingHorizontal="@dimen/_10dp"
                         android:paddingVertical="@dimen/_5dp"
+                        android:textColor="@color/gray_ed"
                         android:text="搜索" />
                 </LinearLayout>
 
 
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_65dp"
+                    android:layout_height="@dimen/_70dp"
                     android:layout_gravity="top"
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin">
@@ -103,19 +110,22 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <LinearLayout
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/mTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30dp"
-                android:background="@color/blue" />
+                android:layout_height="@dimen/title_height"
+                app:tabSelectedTextColor="@color/textColor"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="@dimen/_4dp"
+                app:tabTextColor="@color/textColor"/>
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mRecyclerView"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_12dp"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

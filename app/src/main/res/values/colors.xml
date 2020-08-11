@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#0080FE</color>
     <color name="colorPrimaryDark">#dedede</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="gray_ee">#EEEEEE</color>
+    <color name="gray_ed">#EDEDED</color>
 
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="yellow">#FFFF00</color><!--黄色 -->

@@ -22,6 +22,12 @@ interface ApiServer {
     suspend fun getHomeArticles(@Path("page") page: Int): BaseBean<PageBean<ArticleItemBean>>
 
     /**
+     * 置顶文章
+     */
+    @GET("/article/top/json")
+    suspend fun getTopArticles(): BaseBean<List<ArticleItemBean>>
+
+    /**
      * 首页banner
      */
     @GET("/banner/json")

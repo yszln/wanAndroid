@@ -1,16 +1,16 @@
 package com.yszln.mvvmkt.ui.main.home.fragment
 
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.youth.banner.indicator.CircleIndicator
-import com.yszln.lib.adapter.LoadMoreAdapter
-import com.yszln.lib.fragment.BaseLoadMoreFragment
+import com.yszln.lib.adapter.BaseFragmentAdapter
+import com.yszln.lib.fragment.BaseFragment
+import com.yszln.lib.fragment.BaseVMFragment
 import com.yszln.lib.utils.StatusBarUtil
 import com.yszln.mvvmkt.R
-import com.yszln.mvvmkt.ui.main.home.adapter.ArticleAdapter
 import com.yszln.mvvmkt.ui.main.home.vm.HomeViewModel
 import com.yszln.mvvmkt.widget.banner.MyBannerAdapter
+import com.yszln.mvvmkt.widget.cate.CateItemBean
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -19,21 +19,25 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * @description: 首页
  * @history:
  */
-class HomFragment : BaseLoadMoreFragment<HomeViewModel>() {
-
-    private lateinit var mArticleAdapter: ArticleAdapter
+class HomFragment : BaseVMFragment<HomeViewModel>() {
 
 
     override fun refreshData() {
         mViewModel.getBanner()
-        mViewModel.refreshHomeArticle()
+
+
+        homeCate.setData(ArrayList<CateItemBean>().apply {
+            add(CateItemBean("广场"))
+            add(CateItemBean("导航"))
+            add(CateItemBean("体系"))
+            add(CateItemBean("项目"))
+            add(CateItemBean("公众号"))
+        })
     }
+
 
     override fun initView() {
         StatusBarUtil.setPadding(mContext, homeTitle)
-        mRecyclerView.layoutManager = LinearLayoutManager(mContext)
-        mArticleAdapter = ArticleAdapter()
-        mRecyclerView.adapter = mArticleAdapter
 
         mHomeAppBar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
@@ -43,6 +47,20 @@ class HomFragment : BaseLoadMoreFragment<HomeViewModel>() {
 
 
         initBanner()
+
+        initViewPager()
+
+    }
+
+    private fun initViewPager() {
+        val fragmentAdapter = BaseFragmentAdapter<BaseFragment>(childFragmentManager)
+        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(0,1), "首页")
+        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(1,0), "置顶")
+        mViewPager.adapter = fragmentAdapter
+        mTabLayout.setupWithViewPager(mViewPager,false)
+        for(i in 0..fragmentAdapter.count){
+            mTabLayout.getTabAt(i)?.text=fragmentAdapter.getPageTitle(i)
+        }
 
     }
 
@@ -55,11 +73,6 @@ class HomFragment : BaseLoadMoreFragment<HomeViewModel>() {
 
     override fun observe() {
         mViewModel.apply {
-            articleList.observe(this@HomFragment, Observer {
-                refreshEnd()
-                mArticleAdapter.addData(it)
-                mArticleAdapter.setNewInstance(it)
-            })
 
             bannerList.observe(this@HomFragment, Observer {
                 homeBanner.adapter = MyBannerAdapter(it)
@@ -72,12 +85,4 @@ class HomFragment : BaseLoadMoreFragment<HomeViewModel>() {
 
     override fun layoutId() = R.layout.fragment_home
 
-    override fun loadMoreAdapter(): LoadMoreAdapter<*> {
-        return mArticleAdapter
-    }
-
-    override fun loadMoreData() {
-        mViewModel.loadHomeArticle()
-
-    }
 }

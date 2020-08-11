@@ -9,4 +9,8 @@
         android:id="@+id/main_discover"
         android:title="发现"
         android:icon="@drawable/icon_discover" />
+    <item
+        android:id="@+id/main_mine"
+        android:title="我的"
+        android:icon="@drawable/icon_mine" />
 </menu>

@@ -23,22 +23,22 @@ abstract class BaseLoadMoreFragment<VM : LoadMoreViewModel> : BaseVMFragment<VM>
 
     override fun onRefresh() {
         super.onRefresh()
-        loadMoreAdapter().setList(ArrayList())
+        loadMoreAdapter()?.setList(ArrayList())
     }
 
     private fun initLoadMore() {
-        loadMoreAdapter().loadMoreModule.setOnLoadMoreListener {
+        loadMoreAdapter()?.loadMoreModule?.setOnLoadMoreListener {
             loadMoreData()
         }
         mViewModel.mLoadMoreStatus.observe(this, Observer {
-            loadMoreAdapter().loadMoreModule.loadMoreComplete()
+            loadMoreAdapter()?.loadMoreModule?.loadMoreComplete()
         })
     }
 
     /**
      * 加载更多的适配器
      */
-    abstract fun loadMoreAdapter(): LoadMoreAdapter<*>
+    abstract fun loadMoreAdapter(): LoadMoreAdapter<*>?
 
 
     /**

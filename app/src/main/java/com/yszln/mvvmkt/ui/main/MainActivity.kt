@@ -5,7 +5,6 @@ import com.yszln.lib.activity.BaseActivity
 import com.yszln.lib.utils.StatusBarUtil
 import com.yszln.mvvmkt.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class MainActivity : BaseActivity() {
@@ -15,6 +14,7 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         StatusBarUtil.immersive(this)
+        StatusBarUtil.darkMode(this)
         val findNavController = Navigation.findNavController(this, R.id.main_fragment)
         navigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {

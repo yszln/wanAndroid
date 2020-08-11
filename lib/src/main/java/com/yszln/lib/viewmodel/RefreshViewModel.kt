@@ -10,7 +10,7 @@ open class RefreshViewModel: BaseViewModel() {
     var mRefreshStatus=MutableLiveData<Int>()
 
 
-    fun refreshComplete(){
+    open fun refreshComplete(){
         mRefreshStatus.value=System.currentTimeMillis().toInt()
     }
 
