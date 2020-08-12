@@ -2,6 +2,7 @@ package com.yszln.lib.adapter
 
 import android.view.ViewGroup
 import androidx.annotation.Nullable
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -41,6 +42,21 @@ class BaseFragmentAdapter<F : BaseFragment>(
     @Nullable
     override fun getPageTitle(position: Int): CharSequence? {
         return mFragmentTitle[position]
+    }
+
+    /**
+     * 设置当前显示的页面
+     *
+     * @param clazz 页面class
+     */
+    fun getClassPosition(clazz: Class<out Fragment>): Int {
+        for (i in 0 until mFragmentSet.size) {
+            if (mFragmentSet[i].javaClass.name == clazz.name) {
+                return i
+            }
+        }
+        //没有的话统一选择第一个
+        return 0
     }
 
 

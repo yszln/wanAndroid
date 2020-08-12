@@ -69,4 +69,6 @@ class HomeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
     override fun layoutId() = R.layout.fragment_article
 
 
+
+
 }

@@ -8,16 +8,13 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
 
-    <fragment
-        android:id="@+id/main_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <com.yszln.mvvmkt.widget.viewpager.NoScrollViewPager
+        android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/main_home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"

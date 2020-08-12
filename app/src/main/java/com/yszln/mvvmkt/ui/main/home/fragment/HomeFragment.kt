@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * @description: 首页
  * @history:
  */
-class HomFragment : BaseVMFragment<HomeViewModel>() {
+class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
 
     override fun refreshData() {
@@ -65,7 +65,7 @@ class HomFragment : BaseVMFragment<HomeViewModel>() {
     }
 
     private fun initBanner() {
-        homeBanner.addBannerLifecycleObserver(this@HomFragment)
+        homeBanner.addBannerLifecycleObserver(this@HomeFragment)
             .indicator =
             CircleIndicator(mContext);
 
@@ -74,7 +74,7 @@ class HomFragment : BaseVMFragment<HomeViewModel>() {
     override fun observe() {
         mViewModel.apply {
 
-            bannerList.observe(this@HomFragment, Observer {
+            bannerList.observe(this@HomeFragment, Observer {
                 homeBanner.adapter = MyBannerAdapter(it)
             })
 
