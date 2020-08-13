@@ -86,6 +86,7 @@
                     app:layout_collapseMode="pin">
 
                     <TextView
+                        android:id="@+id/homeSearch"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30dp"
                         android:layout_marginHorizontal="@dimen/_15dp"

@@ -113,7 +113,7 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
     /**
      * 点击事件
      */
-    fun initClick(){}
+    open fun initClick(){}
 
     /**
      * 设置观察者

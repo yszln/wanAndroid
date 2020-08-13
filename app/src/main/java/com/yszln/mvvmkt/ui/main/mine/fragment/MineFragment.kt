@@ -1,38 +1,34 @@
 package com.yszln.mvvmkt.ui.main.mine.fragment
 
-import com.yszln.lib.adapter.CommonViewHolder
-import com.yszln.lib.adapter.LoadMoreAdapter
-import com.yszln.lib.fragment.BaseLoadMoreFragment
+import com.yszln.lib.fragment.BaseVMFragment
+import com.yszln.lib.utils.LogUtil
+import com.yszln.lib.utils.StatusBarUtil
+import com.yszln.lib.utils.toast
 import com.yszln.mvvmkt.R
-import com.yszln.mvvmkt.ui.main.discover.vm.DiscoverViewModel
+import com.yszln.mvvmkt.ui.main.mine.viewmodel.MineViewModel
+import kotlinx.android.synthetic.main.fragment_mine.*
 
-class MineFragment : BaseLoadMoreFragment<DiscoverViewModel>() {
+class MineFragment : BaseVMFragment<MineViewModel>() {
 
-
-    override fun loadMoreAdapter(): LoadMoreAdapter<*> {
-        val adapter = object : LoadMoreAdapter<String>(R.layout.item_rv_home_article) {
-            override fun convert(holder: CommonViewHolder, item: String) {
-
-            }
-        }
-        return adapter
-    }
-
-    override fun loadMoreData() {
-
-    }
 
     override fun refreshData() {
-
+        mine_user_name.postDelayed({
+            refreshEnd()
+        }, 2000)
     }
 
     override fun initView() {
+        StatusBarUtil.setPaddingSmart(mContext, layout)
+        mine_user_name.setOnClickListener {
+            LogUtil.e("mine_user_name")
+            "mine_user_name".toast()
 
+        }
     }
 
     override fun observe() {
 
     }
 
-    override fun layoutId()=R.layout.fragment_mine
+    override fun layoutId() = R.layout.fragment_mine
 }

@@ -2,11 +2,8 @@ package com.yszln.lib.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.yszln.lib.BaseApplication
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,6 +20,8 @@ object ApiFactory {
      */
     val mOkHttpClient: OkHttpClient by lazy { newClient() }
 
+    var mLoginCookie: LoginCookieJar = LoginCookieJar()
+
     /**
      * 创建OKHttp客户端
      */
@@ -38,10 +37,9 @@ object ApiFactory {
             if (BaseApplication.isDebug) {
                 addInterceptor(mLoggingInterceptor)
             }
+            cookieJar(mLoginCookie)
         }.build();
     }
-
-
 
 
     fun getGson(): Gson {

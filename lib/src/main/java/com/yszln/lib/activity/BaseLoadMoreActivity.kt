@@ -3,7 +3,7 @@ package com.yszln.lib.activity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.listener.OnLoadMoreListener
-import com.yszln.lib.adapter.LoadMoreAdapter
+import com.yszln.lib.adapter.LoadMore
 import com.yszln.lib.viewmodel.LoadMoreViewModel
 
 /**
@@ -23,22 +23,22 @@ abstract class BaseLoadMoreActivity<VM : LoadMoreViewModel> : BaseVMActivity<VM>
 
     override fun onRefresh() {
         super.onRefresh()
-        loadMoreAdapter().setList(ArrayList())
+        loadMore().clearData()
     }
 
     private fun initLoadMore() {
-        loadMoreAdapter().loadMoreModule.setOnLoadMoreListener {
+        loadMore().getLoadModule().setOnLoadMoreListener {
             loadMoreData()
         }
         mViewModel.mLoadMoreStatus.observe(this, Observer {
-            loadMoreAdapter().loadMoreModule.loadMoreComplete()
+            loadMore().getLoadModule().loadMoreComplete()
         })
     }
 
     /**
      * 加载更多的适配器
      */
-    abstract fun loadMoreAdapter(): LoadMoreAdapter<*>
+    abstract fun loadMore(): LoadMore
 
 
     /**

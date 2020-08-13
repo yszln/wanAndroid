@@ -34,7 +34,7 @@ open class BaseViewModel : ViewModel() {
         block: Block<Unit>,
         error: Error? = null,
         cancel: Cancel? = null,
-        showToast: Boolean=true
+        showToast: Boolean = true
     ): Job {
         return viewModelScope.launch {
             try {
@@ -67,9 +67,9 @@ open class BaseViewModel : ViewModel() {
     /**
      * 取消协程任务
      */
-    fun cancel(job: Job?){
+    fun cancel(job: Job?) {
         job?.run {
-            if(isActive&&!isCompleted&&!isCancelled)
+            if (isActive && !isCompleted && !isCancelled)
                 job.cancel()
         }
     }
@@ -82,6 +82,9 @@ open class BaseViewModel : ViewModel() {
             is ApiException -> {
                 handlerApiException(e, showToast)
             }
+            else -> {
+                if (showToast) e.message?.toast()
+            }
         }
     }
 
@@ -89,7 +92,7 @@ open class BaseViewModel : ViewModel() {
      * 处理后台返回的不同状态码
      */
     private fun handlerApiException(e: ApiException, showToast: Boolean) {
-        if(showToast)e.message?.let { it.toast()}
+        if (showToast) e.message?.let { it.toast() }
         when (e.code) {
 
         }

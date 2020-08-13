@@ -1,5 +1,8 @@
 package com.yszln.mvvmkt.ui.main.home.fragment
 
+import android.app.Activity
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.AppBarLayout
 import com.youth.banner.indicator.CircleIndicator
@@ -9,6 +12,7 @@ import com.yszln.lib.fragment.BaseVMFragment
 import com.yszln.lib.utils.StatusBarUtil
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.home.vm.HomeViewModel
+import com.yszln.mvvmkt.ui.search.SearchActivity
 import com.yszln.mvvmkt.widget.banner.MyBannerAdapter
 import com.yszln.mvvmkt.widget.cate.CateItemBean
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -52,14 +56,15 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     }
 
+
     private fun initViewPager() {
         val fragmentAdapter = BaseFragmentAdapter<BaseFragment>(childFragmentManager)
-        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(0,1), "首页")
-        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(1,0), "置顶")
+        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(0, 1), "首页")
+        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(1, 0), "置顶")
         mViewPager.adapter = fragmentAdapter
-        mTabLayout.setupWithViewPager(mViewPager,false)
-        for(i in 0..fragmentAdapter.count){
-            mTabLayout.getTabAt(i)?.text=fragmentAdapter.getPageTitle(i)
+        mTabLayout.setupWithViewPager(mViewPager, false)
+        for (i in 0..fragmentAdapter.count) {
+            mTabLayout.getTabAt(i)?.text = fragmentAdapter.getPageTitle(i)
         }
 
     }
@@ -69,6 +74,20 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
             .indicator =
             CircleIndicator(mContext);
 
+    }
+
+
+    override fun initClick(){
+        homeSearch.setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+
+            startActivity(
+                intent, ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity as Activity, it, "search"
+                )
+                    .toBundle()
+            );
+        }
     }
 
     override fun observe() {

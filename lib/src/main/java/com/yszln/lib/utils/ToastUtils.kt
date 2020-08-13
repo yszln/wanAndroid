@@ -12,6 +12,7 @@ object ToastUtils {
     fun showToast(
         message: CharSequence
     ) {
+        mToast?.cancel()
         mToast = Toast.makeText(BaseApplication.mContext, message, Toast.LENGTH_SHORT)
         mToast?.show()
 

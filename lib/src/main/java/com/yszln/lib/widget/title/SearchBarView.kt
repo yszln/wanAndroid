@@ -10,7 +10,7 @@ import com.yszln.lib.R
 import com.yszln.lib.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.view_title.view.*
 
-class TitleBarView @JvmOverloads constructor(
+class SearchBarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
@@ -19,17 +19,18 @@ class TitleBarView @JvmOverloads constructor(
     }
 
     init {
-        View.inflate(context, R.layout.view_title, this)
+        View.inflate(context, R.layout.view_title_search, this)
 
         titleBlack.setOnClickListener {
             if (context is Activity) {
-                context.finish()
+                context.onBackPressed()
             }
         }
 
         if (context is AppCompatActivity) {
             StatusBarUtil.immersive(context)
             StatusBarUtil.setPaddingSmart(context, this)
+            StatusBarUtil.darkMode(context)
         }
     }
 }
