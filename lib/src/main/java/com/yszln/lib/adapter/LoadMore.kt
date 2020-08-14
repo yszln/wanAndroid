@@ -7,4 +7,6 @@ interface LoadMore {
      fun clearData()
 
     fun getLoadModule(): BaseLoadMoreModule
+
+    fun getItemCount():Int
 }

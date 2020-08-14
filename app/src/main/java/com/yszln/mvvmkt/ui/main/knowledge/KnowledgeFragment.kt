@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer
 import com.yszln.lib.adapter.BaseFragmentAdapter
 import com.yszln.lib.fragment.BaseFragment
 import com.yszln.lib.fragment.BaseVMFragment
+import com.yszln.lib.utils.StatusBarUtil
 import com.yszln.mvvmkt.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -13,6 +14,7 @@ class KnowledgeFragment : BaseVMFragment<KnowledgeViewModel>() {
     }
 
     override fun initView() {
+        StatusBarUtil.setPaddingSmart(context,mTabLayout)
     }
 
     override fun observe() {
@@ -28,7 +30,7 @@ class KnowledgeFragment : BaseVMFragment<KnowledgeViewModel>() {
     private fun initViewPager(list: List<KnowLedgeItemBean>) {
         val fragmentAdapter = BaseFragmentAdapter<BaseFragment>(childFragmentManager)
         for (knowLedgeItemBean in list) {
-            fragmentAdapter.addFragment(KnowledgeArticleFragment.newInstance(knowLedgeItemBean), knowLedgeItemBean.name)
+            fragmentAdapter.addFragment(KnowledgeCateFragment.newInstance(knowLedgeItemBean), knowLedgeItemBean.name)
         }
 
         mViewPager.adapter = fragmentAdapter

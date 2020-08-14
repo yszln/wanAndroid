@@ -24,3 +24,7 @@ fun BaseViewHolder.showToast(string: String) {
 fun Any.toJson():String{
   return  JsonUtils.toJson(this)
 }
+
+fun Any.For():String{
+    return  JsonUtils.toJson(this)
+}

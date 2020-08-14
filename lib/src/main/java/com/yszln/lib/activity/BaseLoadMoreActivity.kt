@@ -31,7 +31,15 @@ abstract class BaseLoadMoreActivity<VM : LoadMoreViewModel> : BaseVMActivity<VM>
             loadMoreData()
         }
         mViewModel.mLoadMoreStatus.observe(this, Observer {
-            loadMore().getLoadModule().loadMoreComplete()
+            loadMore()?.run {
+                if((getItemCount()%20==0)){
+                    //能被20整除，有下一页
+                    getLoadModule()?.loadMoreComplete()
+                }else{
+                    getLoadModule()?.loadMoreEnd()
+                }
+
+            }
         })
     }
 

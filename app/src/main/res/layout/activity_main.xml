@@ -21,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:backgroundTint="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/main" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,12 @@ interface ApiServer {
     suspend fun getHomeArticles(@Path("page") page: Int): BaseBean<PageBean<ArticleItemBean>>
 
     /**
+     * 按照在实体性分类获取文章
+     */
+    @GET("/article/list/{page}/json")
+    suspend fun getCateArticle(@Path("page") page: Int,@Query("cid") cid: Int): BaseBean<PageBean<ArticleItemBean>>
+
+    /**
      * 置顶文章
      */
     @GET("/article/top/json")
@@ -53,6 +59,9 @@ interface ApiServer {
         @Field("password") password: String
     ): BaseBean<UserInfo>
 
+    /**
+     * 知识体系分类
+     */
     @GET("tree/json")
     suspend fun getKnowledgeTree(): BaseBean<List<KnowLedgeItemBean>>
 }

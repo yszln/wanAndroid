@@ -6,6 +6,10 @@
         android:icon="@drawable/icon_home"
         android:title="首页" />
     <item
+        android:id="@+id/main_knowledge"
+        android:title="知识体系"
+        android:icon="@drawable/icon_knowledge" />
+    <item
         android:id="@+id/main_discover"
         android:title="发现"
         android:icon="@drawable/icon_discover" />

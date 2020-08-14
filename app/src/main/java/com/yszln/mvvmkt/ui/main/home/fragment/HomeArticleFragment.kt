@@ -58,9 +58,6 @@ class HomeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
                 mArticleAdapter.setNewInstance(it)
             })
 
-            mRefreshStatus.observe(this@HomeArticleFragment, Observer {
-                refreshEnd()
-            })
         }
     }
 
