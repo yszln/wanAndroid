@@ -4,7 +4,9 @@
 
 
     <color name="gray_ee">#EEEEEE</color>
+    <color name="gray_ef">#EFEFEF</color>
     <color name="gray_ed">#EDEDED</color>
+    <color name="gray_6b">#6B6B6B</color>
 
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="yellow">#FFFF00</color><!--黄色 -->

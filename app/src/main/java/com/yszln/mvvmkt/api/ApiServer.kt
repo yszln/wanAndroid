@@ -3,6 +3,7 @@ package com.yszln.mvvmkt.api
 import com.yszln.lib.bean.BaseBean
 import com.yszln.mvvmkt.ui.article.ArticleItemBean
 import com.yszln.mvvmkt.ui.main.home.bean.BannerItemBean
+import com.yszln.mvvmkt.ui.main.knowledge.KnowLedgeItemBean
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
 import retrofit2.http.*
 
@@ -25,6 +26,18 @@ interface ApiServer {
     suspend fun getTopArticles(): BaseBean<List<ArticleItemBean>>
 
     /**
+     * 搜索
+     * @param page 页码
+     * @param keyWord 关键字
+     */
+    @POST("/article/query/{page}/json")
+    @FormUrlEncoded
+    suspend fun search(
+        @Path("page") page: Int,
+        @Field("k") keyWord: String
+    ): BaseBean<PageBean<ArticleItemBean>>
+
+    /**
      * 首页banner
      */
     @GET("/banner/json")
@@ -39,4 +52,7 @@ interface ApiServer {
         @Field("username") username: String,
         @Field("password") password: String
     ): BaseBean<UserInfo>
+
+    @GET("tree/json")
+    suspend fun getKnowledgeTree(): BaseBean<List<KnowLedgeItemBean>>
 }

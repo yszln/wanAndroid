@@ -104,6 +104,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_70dp"
                     android:layout_gravity="top"
+                    android:visibility="invisible"
+                    android:clickable="false"
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin">
 

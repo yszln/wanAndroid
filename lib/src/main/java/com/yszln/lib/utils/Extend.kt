@@ -2,15 +2,12 @@ package com.yszln.lib.utils
 
 import android.content.Context
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.yszln.lib.activity.BaseActivity
 
 
 /**
  * 扩展方法
  */
-fun String.isEmpty(): Boolean {
-    return null == this || "" == this
-}
+
 
 fun String.toast() {
     ToastUtils.showToast(this)

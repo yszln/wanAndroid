@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.listener.OnLoadMoreListener
-import com.yszln.lib.adapter.LoadMoreAdapter
+import com.yszln.lib.adapter.LoadMore
 import com.yszln.lib.viewmodel.LoadMoreViewModel
 
 /**
-* @author: yszln
-* @date: 2020/8/9 22:01
-* @description: 可以加载更多的fragment，基于BaseRecyclerViewAdapterHelper适配器
-* @history:
-*/
+ * @author: yszln
+ * @date: 2020/8/9 22:01
+ * @description: 可以加载更多的fragment，基于BaseRecyclerViewAdapterHelper适配器
+ * @history:
+ */
 abstract class BaseLoadMoreFragment<VM : LoadMoreViewModel> : BaseVMFragment<VM>(),
     OnLoadMoreListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,22 +23,22 @@ abstract class BaseLoadMoreFragment<VM : LoadMoreViewModel> : BaseVMFragment<VM>
 
     override fun onRefresh() {
         super.onRefresh()
-        loadMoreAdapter()?.setList(ArrayList())
+        loadMore()?.clearData()
     }
 
     private fun initLoadMore() {
-        loadMoreAdapter()?.loadMoreModule?.setOnLoadMoreListener {
+        loadMore()?.getLoadModule()?.setOnLoadMoreListener {
             loadMoreData()
         }
         mViewModel.mLoadMoreStatus.observe(this, Observer {
-            loadMoreAdapter()?.loadMoreModule?.loadMoreComplete()
+            loadMore()?.getLoadModule()?.loadMoreComplete()
         })
     }
 
     /**
      * 加载更多的适配器
      */
-    abstract fun loadMoreAdapter(): LoadMoreAdapter<*>?
+    abstract fun loadMore(): LoadMore?
 
 
     /**

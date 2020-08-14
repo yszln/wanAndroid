@@ -1,16 +1,12 @@
 package com.yszln.lib.adapter
 
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.BaseLoadMoreModule
 import com.chad.library.adapter.base.module.LoadMoreModule
 
-/**
-* @author: yszln
-* @date: 2020/8/7 21:08
-* @description: 加载更多适配器
-* @history:
-*/
-abstract class LoadMoreAdapter<T>(layoutResId: Int) :CommonAdapter<T>(layoutResId),LoadMoreModule,LoadMore{
-
+abstract class CommonMultiItemLoadAdapter<T> :
+BaseMultiItemQuickAdapter<MultiItemEntity, CommonViewHolder>(), LoadMore, LoadMoreModule {
     override fun clearData() {
         setList(ArrayList())
     }
@@ -18,6 +14,4 @@ abstract class LoadMoreAdapter<T>(layoutResId: Int) :CommonAdapter<T>(layoutResI
     override fun getLoadModule(): BaseLoadMoreModule {
         return loadMoreModule
     }
-
-
 }

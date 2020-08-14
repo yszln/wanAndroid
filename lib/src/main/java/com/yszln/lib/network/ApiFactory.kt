@@ -13,7 +13,7 @@ object ApiFactory {
     /**
      * 日志拦截器
      */
-    private val mLoggingInterceptor: LoggingInterceptor by lazy { LoggingInterceptor() }
+    private val mLoggingInterceptor: LogInterceptor by lazy { LogInterceptor.Builder().build() }
 
     /**
      * OKHttp客户端

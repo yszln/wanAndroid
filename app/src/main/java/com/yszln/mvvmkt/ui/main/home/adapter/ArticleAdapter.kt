@@ -1,6 +1,7 @@
 package com.yszln.mvvmkt.ui.main.home.adapter
 
 import android.content.Intent
+import android.text.Html
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yszln.lib.adapter.CommonViewHolder
@@ -21,8 +22,9 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
 
     override fun convert(holder: CommonViewHolder, item: ArticleItemBean) {
         holder.setText(
-            R.id.item_rv_home_no,
-            (holder.adapterPosition + 1).toString() + ".\u2000" + item.title
-        )
+            R.id.item_rv_home_title,
+            Html.fromHtml((holder.adapterPosition + 1).toString() + ".\u2000" + item.title)
+        ).setText(R.id.item_rv_home_time,item.niceDate)
+            .setText(R.id.item_rv_home_author,item.shareUser)
     }
 }

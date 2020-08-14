@@ -8,10 +8,12 @@
     tools:context=".ui.search.SearchActivity">
 
     <com.yszln.lib.widget.title.SearchBarView
+        android:id="@+id/mSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

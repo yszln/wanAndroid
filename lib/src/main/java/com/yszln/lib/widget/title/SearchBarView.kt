@@ -8,14 +8,15 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.yszln.lib.R
 import com.yszln.lib.utils.StatusBarUtil
-import kotlinx.android.synthetic.main.view_title.view.*
+import com.yszln.lib.widget.input.SearchEditText
+import kotlinx.android.synthetic.main.view_title_search.view.*
 
 class SearchBarView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    fun setTitle(title: String?) {
-        titleTitle.text = title
+    fun setHint(title: String?) {
+        titleSearch.hint = title
     }
 
     init {
@@ -32,5 +33,10 @@ class SearchBarView @JvmOverloads constructor(
             StatusBarUtil.setPaddingSmart(context, this)
             StatusBarUtil.darkMode(context)
         }
+
+    }
+
+    public fun setSearchListener(listener: SearchEditText.OnSearchListener) {
+        titleSearch.onSearchListener = listener
     }
 }

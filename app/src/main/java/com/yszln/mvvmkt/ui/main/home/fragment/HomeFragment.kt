@@ -67,6 +67,8 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
             mTabLayout.getTabAt(i)?.text = fragmentAdapter.getPageTitle(i)
         }
 
+
+
     }
 
     private fun initBanner() {

@@ -9,7 +9,7 @@ import com.yszln.mvvmkt.ui.main.discover.vm.DiscoverViewModel
 class DiscoverFragment : BaseLoadMoreFragment<DiscoverViewModel>() {
 
 
-    override fun loadMoreAdapter(): LoadMoreAdapter<*> {
+    override fun loadMore(): LoadMoreAdapter<*> {
         val adapter = object : LoadMoreAdapter<String>(R.layout.item_rv_home_article) {
             override fun convert(holder: CommonViewHolder, item: String) {
 

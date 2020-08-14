@@ -3,7 +3,7 @@ package com.yszln.mvvmkt.ui.main.home.fragment
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yszln.lib.adapter.LoadMoreAdapter
+import com.yszln.lib.adapter.LoadMore
 import com.yszln.lib.fragment.BaseLoadMoreFragment
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.home.adapter.ArticleAdapter
@@ -25,12 +25,7 @@ class HomeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
 
     private lateinit var mArticleAdapter: ArticleAdapter
 
-    override fun loadMoreAdapter(): LoadMoreAdapter<*>? {
-        if(mViewModel.loadMore!=1){
-            return null
-        }
-        return mArticleAdapter
-    }
+
 
     override fun loadMoreData() {
         mViewModel.loadHomeArticle()
@@ -59,16 +54,23 @@ class HomeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
     override fun observe() {
         mViewModel.apply {
             articleList.observe(this@HomeArticleFragment, Observer {
-                refreshEnd()
-                mArticleAdapter.addData(it)
+
                 mArticleAdapter.setNewInstance(it)
+            })
+
+            mRefreshStatus.observe(this@HomeArticleFragment, Observer {
+                refreshEnd()
             })
         }
     }
 
     override fun layoutId() = R.layout.fragment_article
-
-
+    override fun loadMore(): LoadMore? {
+        if(mViewModel.loadMore!=1){
+            return null
+        }
+        return mArticleAdapter
+    }
 
 
 }
