@@ -6,7 +6,8 @@ import com.yszln.mvvmkt.api.Api
 
 class KnowledgeViewModel : RefreshViewModel() {
 
-    val treeList = MutableLiveData<List<KnowLedgeItemBean>>()
+
+    val treeList = MutableLiveData<MutableList<KnowLedgeItemBean>>()
 
    open fun getTree() {
         launch(

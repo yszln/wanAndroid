@@ -2,7 +2,7 @@ package com.yszln.lib
 
 import android.app.Application
 import android.content.Context
-import com.chad.library.adapter.base.module.LoadMoreModuleConfig
+import com.chad.library.adapter.base.module.LoadMoreModuleConfig.defLoadMoreView
 import com.yszln.lib.widget.CustomLoadMoreView
 
 
@@ -19,8 +19,6 @@ open class BaseApplication : Application() {
         super.onCreate()
         mContext=this
         // 在 Application 中配置全局自定义的 LoadMoreView
-        LoadMoreModuleConfig.defLoadMoreView = CustomLoadMoreView()
-
-
+        defLoadMoreView = CustomLoadMoreView()
     }
 }

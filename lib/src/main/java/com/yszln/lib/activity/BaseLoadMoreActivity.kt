@@ -40,6 +40,7 @@ abstract class BaseLoadMoreActivity<VM : LoadMoreViewModel> : BaseVMActivity<VM>
                 }
 
             }
+
         })
     }
 

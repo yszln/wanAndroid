@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <com.google.android.material.appbar.AppBarLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="@android:color/transparent"
-       android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-       app:elevation="0dp">
-      <com.google.android.material.appbar.CollapsingToolbarLayout
-          android:layout_width="match_parent"
-          app:layout_scrollFlags="scroll|exitUntilCollapsed"
-          android:layout_height="wrap_content">
-          <com.google.android.material.tabs.TabLayout
-              android:id="@+id/mTabLayout"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/title_height"
-              app:tabSelectedTextColor="@color/textColor"
-              app:tabIndicatorFullWidth="false"
-              app:tabMode="scrollable"
-              app:layout_collapseMode="parallax"
-              app:tabIndicatorHeight="@dimen/_4dp"
-              app:tabTextColor="@color/textColor"/>
-      </com.google.android.material.appbar.CollapsingToolbarLayout>
-   </com.google.android.material.appbar.AppBarLayout>
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/mViewPager"
-        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/knowledgeTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:drawableRight="@mipmap/triangle_down"
+        android:drawablePadding="@dimen/_5dp"
+        android:paddingVertical="@dimen/_10dp"
+        android:text="知识体系"
+        android:textSize="@dimen/_16sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:id="@+id/cateContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/knowledgeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           />
+        <View
+            android:id="@+id/knowledgeMask"
+            android:layout_width="match_parent"
+            android:background="@color/mask_black"
+            android:visibility="gone"
+            android:layout_height="match_parent"/>
+
+        <com.yszln.mvvmkt.widget.layout.MaxHeightLinearLayout
+            android:id="@+id/verticalCateLayout"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv1"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv2"
+                android:layout_width="0dp"
+                android:layout_weight="10"
+                android:layout_height="wrap_content" />
+
+        </com.yszln.mvvmkt.widget.layout.MaxHeightLinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

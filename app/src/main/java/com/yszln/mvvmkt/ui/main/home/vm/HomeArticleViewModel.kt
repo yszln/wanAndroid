@@ -15,11 +15,11 @@ class HomeArticleViewModel : LoadMoreViewModel() {
     val articleList = MutableLiveData<MutableList<ArticleItemBean>>()
 
 
-    fun refreshHomeArticle(keyWord: String = "",cateId:Int=0) {
+    fun refreshHomeArticle(keyWord: String = "", cateId: Int = 0) {
         page = 1
         launch(
             block = {
-                val homeArticles = getArticle(keyWord,cateId)
+                val homeArticles = getArticle(keyWord, cateId)
                 articleList.value = mutableListOf<ArticleItemBean>().apply {
                     addAll(homeArticles)
                 }
@@ -32,7 +32,7 @@ class HomeArticleViewModel : LoadMoreViewModel() {
         )
     }
 
-    private suspend fun getArticle(keyWord: String,cateId:Int): List<ArticleItemBean> {
+    private suspend fun getArticle(keyWord: String, cateId: Int): List<ArticleItemBean> {
         when (type) {
             0 -> {
                 //首页
@@ -49,7 +49,10 @@ class HomeArticleViewModel : LoadMoreViewModel() {
             }
             3 -> {
                 //知识体系文章
-                return Api.mApiServer.getCateArticle(page,cateId).data().datas
+                return Api.mApiServer.getCateArticle(
+                    page,
+                    if (cateId == 0) null else cateId.toString()
+                ).data().datas
             }
             else -> {
                 //首页
@@ -60,11 +63,11 @@ class HomeArticleViewModel : LoadMoreViewModel() {
     }
 
 
-    fun loadHomeArticle(keyWord: String = "",cateId:Int=0) {
+    fun loadHomeArticle(keyWord: String = "", cateId: Int = 0) {
         page++;
         launch(
             block = {
-                val homeArticles = getArticle(keyWord,cateId)
+                val homeArticles = getArticle(keyWord, cateId)
                 articleList.value?.apply {
                     addAll(homeArticles)
                 }

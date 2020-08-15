@@ -5,41 +5,46 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yszln.lib.adapter.LoadMore
 import com.yszln.lib.fragment.BaseLoadMoreFragment
+import com.yszln.lib.utils.toJson
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.home.adapter.ArticleAdapter
 import com.yszln.mvvmkt.ui.main.home.vm.HomeArticleViewModel
-import kotlinx.android.synthetic.main.fragment_article.*
+import kotlinx.android.synthetic.main.fragment_knowledge_article.*
 
 class KnowledgeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
 
-    var mSelectCateId = 0
+    var mArticleAdapter = ArticleAdapter()
+
+    var mCateBean: KnowLedgeItemBean? = null
 
     companion object {
-        fun newInstance(id: Int): KnowledgeArticleFragment {
+        fun newInstance(bean: KnowLedgeItemBean): KnowledgeArticleFragment {
             val fragment = KnowledgeArticleFragment()
             val bundle = Bundle()
-            bundle.putInt("id", id)
+            bundle.putString("data", bean.toJson())
             fragment.arguments = bundle
             return fragment
         }
     }
 
-
-    var mArticleAdapter = ArticleAdapter()
-
+    fun setCate(knowLedgeItemBean: KnowLedgeItemBean) {
+        mCateBean=knowLedgeItemBean
+        onRefresh()
+    }
 
     override fun loadMore(): LoadMore? = mArticleAdapter
 
     override fun loadMoreData() {
-        mViewModel.loadHomeArticle("", mSelectCateId)
+        mViewModel.loadHomeArticle("", mCateBean?.id ?: 0)
     }
 
     override fun refreshData() {
-        mViewModel.refreshHomeArticle("", mSelectCateId)
+        mViewModel.refreshHomeArticle("", mCateBean?.id ?: 0)
     }
 
     override fun initView() {
-        mSelectCateId = arguments?.getInt("id") ?: 0
+//        val string = arguments?.getString("data")
+//        mCateBean = Gson().fromJson(string, KnowLedgeItemBean::class.java)
         mRecyclerView.adapter = mArticleAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(mContext)
         mViewModel.type = 3

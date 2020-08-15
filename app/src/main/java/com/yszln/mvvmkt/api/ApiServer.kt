@@ -23,7 +23,7 @@ interface ApiServer {
      * 按照在实体性分类获取文章
      */
     @GET("/article/list/{page}/json")
-    suspend fun getCateArticle(@Path("page") page: Int,@Query("cid") cid: Int): BaseBean<PageBean<ArticleItemBean>>
+    suspend fun getCateArticle(@Path("page") page: Int,@Query("cid") cid: String?): BaseBean<PageBean<ArticleItemBean>>
 
     /**
      * 置顶文章
