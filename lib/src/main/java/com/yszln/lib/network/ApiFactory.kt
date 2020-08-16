@@ -20,7 +20,7 @@ object ApiFactory {
      */
     val mOkHttpClient: OkHttpClient by lazy { newClient() }
 
-    var mLoginCookie: LoginCookieJar = LoginCookieJar()
+    var mLoginCookie: CookieJarImpl = CookieJarImpl()
 
     /**
      * 创建OKHttp客户端
