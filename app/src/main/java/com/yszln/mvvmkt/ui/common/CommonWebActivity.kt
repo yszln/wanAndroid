@@ -3,13 +3,10 @@ package com.yszln.mvvmkt.ui.common
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.annotation.RequiresApi
 import com.yszln.lib.activity.BaseActivity
-import com.yszln.lib.utils.toast
+import com.yszln.lib.utils.LogUtil
 import com.yszln.mvvmkt.R
 import kotlinx.android.synthetic.main.activity_web.*
 
@@ -19,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_web.*
  * @description: 公用的web页面
  * @history:
  */
-class CommonWebActivity : BaseActivity() {
+class CommonWebActivity : BaseActivity(), DownloadListener {
 
     private var mUrl: String? = null
 
@@ -42,6 +39,7 @@ class CommonWebActivity : BaseActivity() {
     private fun initWebView() {
         webView.webChromeClient = MyChromeClient()
         webView.webViewClient = MyWebViewClient()
+        webView.setDownloadListener(this)
     }
 
     private fun initRefresh() {
@@ -67,6 +65,7 @@ class CommonWebActivity : BaseActivity() {
             titleBar.setTitle(title)
         }
 
+
     }
 
     inner class MyWebViewClient : WebViewClient() {
@@ -88,6 +87,7 @@ class CommonWebActivity : BaseActivity() {
             }
             return super.shouldOverrideUrlLoading(view, url)
         }
+
     }
 
     private fun interceptUrl(url: String): Boolean {
@@ -105,5 +105,17 @@ class CommonWebActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun onDownloadStart(
+        url: String,
+        userAgent: String,
+        contentDisposition: String,
+        mimetype: String,
+        contentLength: Long
+    ) {
+        val fileName =
+            URLUtil.guessFileName(url, contentDisposition, mimetype)
+        LogUtil.e("onDownloadStart:fileName:${fileName},url${url}")
     }
 }
