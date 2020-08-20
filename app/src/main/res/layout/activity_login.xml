@@ -4,53 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/_16dp"
-    android:paddingTop="@dimen/_16dp"
-    android:paddingRight="@dimen/_16dp"
-    android:paddingBottom="@dimen/_16dp">
+    android:layout_height="match_parent">
+
+    <com.yszln.lib.widget.title.TitleBarView
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:selectAllOnFocus="true"
+        android:layout_marginHorizontal="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_30dp"
         android:background="@drawable/shape_3dp_gray_ee"
-        android:padding="@dimen/_15dp"
         android:hint="@string/prompt_email"
+        android:inputType="text"
+        android:padding="@dimen/_15dp"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/titleBar" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_30dp"
         android:background="@drawable/shape_3dp_gray_ee"
-        android:padding="@dimen/_15dp"
         android:hint="@string/prompt_password"
         android:imeOptions="actionDone"
-        android:layout_marginTop="@dimen/_30dp"
         android:inputType="textPassword"
+        android:padding="@dimen/_15dp"
         android:selectAllOnFocus="true"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <Button
+    <TextView
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:paddingHorizontal="@dimen/_60dp"
+        android:layout_marginTop="@dimen/_30dp"
         android:background="@drawable/shape_3dp_gray_ee"
+        android:paddingHorizontal="@dimen/_60dp"
+        android:paddingVertical="@dimen/_15dp"
         android:text="@string/action_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <ProgressBar
         android:id="@+id/loading"

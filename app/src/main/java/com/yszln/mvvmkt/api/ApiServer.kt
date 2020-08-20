@@ -2,6 +2,7 @@ package com.yszln.mvvmkt.api
 
 import com.yszln.lib.bean.BaseBean
 import com.yszln.mvvmkt.ui.article.ArticleItemBean
+import com.yszln.mvvmkt.ui.main.discover.bean.DiscoverBean
 import com.yszln.mvvmkt.ui.main.home.bean.BannerItemBean
 import com.yszln.mvvmkt.ui.main.knowledge.KnowLedgeItemBean
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
@@ -64,4 +65,10 @@ interface ApiServer {
      */
     @GET("tree/json")
     suspend fun getKnowledgeTree(): BaseBean<List<KnowLedgeItemBean>>
+
+    /**
+     * 常用网站
+     */
+    @GET("/friend/json")
+    suspend fun frequentlyUsedWebsites() :BaseBean<List<DiscoverBean>>
 }
