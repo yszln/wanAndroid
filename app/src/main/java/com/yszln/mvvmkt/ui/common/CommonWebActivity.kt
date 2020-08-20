@@ -1,10 +1,12 @@
 package com.yszln.mvvmkt.ui.common
 
+import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.webkit.*
 import androidx.annotation.RequiresApi
+import com.yszln.lib.BaseApplication
 import com.yszln.lib.activity.BaseActivity
 import com.yszln.lib.utils.LogUtil
 import com.yszln.mvvmkt.R
@@ -17,6 +19,14 @@ import kotlinx.android.synthetic.main.activity_web.*
  * @history:
  */
 class CommonWebActivity : BaseActivity(), DownloadListener {
+
+    companion object {
+        public fun start(url: String) {
+            val intent = Intent(BaseApplication.mContext, CommonWebActivity::class.java)
+            intent.putExtra("url", url)
+            BaseApplication.mContext.startActivity(intent)
+        }
+    }
 
     private var mUrl: String? = null
 

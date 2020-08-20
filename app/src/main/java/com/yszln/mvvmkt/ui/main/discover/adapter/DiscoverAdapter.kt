@@ -5,6 +5,7 @@ import com.google.android.material.chip.ChipGroup
 import com.yszln.lib.adapter.CommonAdapter
 import com.yszln.lib.adapter.CommonViewHolder
 import com.yszln.mvvmkt.R
+import com.yszln.mvvmkt.ui.common.CommonWebActivity
 import com.yszln.mvvmkt.ui.main.discover.bean.DiscoverItem
 
 /**
@@ -18,6 +19,9 @@ class DiscoverAdapter(layoutResId: Int = R.layout.item_rv_discover) :
             val chip = Chip(context)
             chip.text = item.name
             chipGroup.addView(chip)
+            chip.setOnClickListener {
+                CommonWebActivity.start(item.link)
+            }
         }
     }
 }

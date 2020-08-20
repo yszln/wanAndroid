@@ -14,9 +14,8 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
 
     init {
         setOnItemClickListener { _: BaseQuickAdapter<*, *>, view: View, position: Int ->
-            val intent = Intent(context, CommonWebActivity::class.java)
-            intent.putExtra("url", data[position].link)
-            context.startActivity(intent)
+
+            CommonWebActivity.start(data[position].link)
         }
     }
 
