@@ -14,11 +14,18 @@ class CateView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
+    private var itemCount = 5
+    var itemWidth = 0
+
+    init {
+        itemWidth = (ScreenUtil.getScreenWidth() - paddingLeft - paddingRight) / itemCount
+    }
+
     private var mAdapter = object : CommonAdapter<CateItemBean>(R.layout.item_rv_cate) {
         override fun convert(holder: CommonViewHolder, item: CateItemBean) {
             holder.setText(R.id.textView, item.title)
             holder.itemView.layoutParams = ViewGroup.LayoutParams(
-                (ScreenUtil.getScreenWidth() - paddingLeft - paddingRight) / itemCount,
+                itemWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }
@@ -29,8 +36,6 @@ class CateView @JvmOverloads constructor(
     }
 
 
-    private var itemCount = 4
-
     fun setData(list: List<CateItemBean>) {
         list?.run {
             layoutManager = if (size >= 2 * itemCount) {
@@ -39,7 +44,6 @@ class CateView @JvmOverloads constructor(
             } else {
                 //一排
                 GridLayoutManager(context, 1, HORIZONTAL, false)
-
             }
             mAdapter.setList(list)
         }

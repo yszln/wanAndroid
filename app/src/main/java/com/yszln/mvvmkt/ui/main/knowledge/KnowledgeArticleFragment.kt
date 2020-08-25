@@ -43,8 +43,6 @@ class KnowledgeArticleFragment : BaseLoadMoreFragment<HomeArticleViewModel>() {
     }
 
     override fun initView() {
-//        val string = arguments?.getString("data")
-//        mCateBean = Gson().fromJson(string, KnowLedgeItemBean::class.java)
         mRecyclerView.adapter = mArticleAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(mContext)
         mViewModel.type = 3

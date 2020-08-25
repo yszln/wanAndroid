@@ -36,6 +36,7 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
         super.onResume()
         if (isFirstLoad) {
             //懒加载
+            swipeRefreshLayout?.isRefreshing = true
             refreshData()
             isFirstLoad = false;
         }
@@ -51,7 +52,6 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
         initClick()
 
     }
-
 
 
     override fun onDestroyView() {
@@ -113,7 +113,7 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
     /**
      * 点击事件
      */
-    open fun initClick(){}
+    open fun initClick() {}
 
     /**
      * 设置观察者

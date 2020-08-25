@@ -19,7 +19,12 @@ class KnowledgeFragment : BaseVMFragment<KnowledgeViewModel>() {
     override fun layoutId() = R.layout.fragment_knowledge
 
     override fun refreshData() {
-        mViewModel.getTree()
+        if(mFirstCateAdapter.itemCount>0){
+            mArticleFragment?.onRefresh()
+        }else{
+            mViewModel.getTree()
+        }
+
     }
 
     override fun initView() {

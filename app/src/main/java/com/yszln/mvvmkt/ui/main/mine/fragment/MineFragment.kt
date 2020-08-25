@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 
 class MineFragment : BaseVMFragment<MineViewModel>() {
 
+    var mUserInfo:UserInfo?=null
+
 
     override fun refreshData() {
         mine_user_name.postDelayed({
@@ -24,11 +26,21 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
 
     override fun initView() {
         StatusBarUtil.setPaddingSmart(mContext, layout)
-        mine_user_name.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
+
+        mine_user_login.setOnClickListener {
+            if(null==mUserInfo){
+                //登录
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+            }else{
+                //退出登录
+                SPUtils.put("LOGIN_USER", "")
+                mUserInfo=null
+                showLoginUser();
+            }
 
         }
+
     }
 
     override fun observe() {
@@ -40,9 +52,11 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
     private fun showLoginUser() {
         try {
             val get = SPUtils.get("LOGIN_USER")
-            val fromJson = Gson().fromJson(get, UserInfo::class.java)
-            mine_user_name.text = fromJson.nickname
+            mUserInfo = Gson().fromJson(get, UserInfo::class.java)
+            mine_user_name.text = mUserInfo!!.nickname
+            mine_user_login.text = "退出登陆"
         } catch (e: Exception) {
+            mine_user_login.text = "登陆"
         }
     }
 

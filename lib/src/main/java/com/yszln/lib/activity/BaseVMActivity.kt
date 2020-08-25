@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yszln.lib.R
-import com.yszln.lib.viewmodel.BaseViewModel
 import com.yszln.lib.viewmodel.RefreshViewModel
 import java.lang.reflect.ParameterizedType
 
@@ -28,6 +27,7 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
         initRefresh()
         observe()
         initClick()
+        swipeRefreshLayout?.isRefreshing = true
         refreshData()
     }
 

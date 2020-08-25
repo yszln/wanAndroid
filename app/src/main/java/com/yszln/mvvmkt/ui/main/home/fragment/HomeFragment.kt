@@ -36,6 +36,16 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
             add(CateItemBean("体系"))
             add(CateItemBean("项目"))
             add(CateItemBean("公众号"))
+            add(CateItemBean("广场"))
+            add(CateItemBean("导航"))
+            add(CateItemBean("体系"))
+            add(CateItemBean("项目"))
+            add(CateItemBean("公众号"))
+            add(CateItemBean("广场"))
+            add(CateItemBean("导航"))
+            add(CateItemBean("体系"))
+            add(CateItemBean("项目"))
+            add(CateItemBean("公众号"))
         })
     }
 

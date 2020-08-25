@@ -3,6 +3,7 @@ package com.yszln.mvvmkt.ui.main.discover.fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yszln.lib.fragment.BaseVMFragment
+import com.yszln.lib.utils.StatusBarUtil
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.discover.adapter.DiscoverAdapter
 import com.yszln.mvvmkt.ui.main.discover.vm.DiscoverViewModel
@@ -19,6 +20,7 @@ class DiscoverFragment : BaseVMFragment<DiscoverViewModel>() {
     }
 
     override fun initView() {
+        StatusBarUtil.setPaddingSmart(mContext, discoverRv)
         discoverRv.adapter = mAdapter
         discoverRv.layoutManager = LinearLayoutManager(mContext)
     }

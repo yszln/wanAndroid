@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,10 +17,21 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginTop="@dimen/_10dp"
-            android:text="登陆"
+            android:text="author"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/mine_user_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:paddingHorizontal="@dimen/_15dp"
+            android:text="登陆"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_user_name"
+            app:layout_constraintStart_toEndOf="@+id/mine_user_name"
+            app:layout_constraintTop_toTopOf="@+id/mine_user_name" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -46,5 +55,50 @@
             android:src="@mipmap/message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mine_user_name">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1dp"
+                android:background="@color/gray_ee" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_15dp"
+                android:paddingVertical="@dimen/_15dp"
+                android:text="我的文章" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1dp"
+                android:background="@color/gray_ee" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_15dp"
+                android:paddingVertical="@dimen/_15dp"
+                android:text="我的收藏" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1dp"
+                android:background="@color/gray_ee" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_15dp"
+                android:paddingVertical="@dimen/_15dp"
+                android:text="我的积分" />
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
