@@ -9,34 +9,54 @@ import okhttp3.CookieJar
 import okhttp3.HttpUrl
 
 /**
-* @author: yszln
-* @date: 2020/8/16 20:58
-* @description: cookie处理，
-* @history:
-*/
+ * @author: yszln
+ * @date: 2020/8/16 20:58
+ * @description: cookie处理，
+ * @history:
+ */
 class CookieJarImpl : CookieJar {
+
+    val mCookies = ArrayList<Cookie>()
+
+    init {
+        var oldCookie =
+            Gson().fromJson<CookieBean>(
+                SPUtils.get("COOKIES"),
+                CookieBean::class.java
+            )?.list?: mutableListOf<Cookie>()
+        mCookies.addAll(oldCookie)
+    }
 
 
     override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
-        var fromJson =
-            Gson().fromJson<CookieBean>(SPUtils.get("COOKIE_" + url.host()), CookieBean::class.java)
-                ?: CookieBean(ArrayList<Cookie>())
-        if(null==fromJson){
-            fromJson= CookieBean(mutableListOf());
-        }
-        LogUtil.e("保存cookie->${cookies}")
-        fromJson.list.addAll(cookies)
+
+        mCookies.addAll(cookies)
         SPUtils.put(
-            "COOKIE_" + url.host(), fromJson.toJson()
+            "COOKIES", CookieBean(mCookies).toJson()
         )
     }
 
     override fun loadForRequest(url: HttpUrl): MutableList<Cookie> {
-        val fromJson =
-            Gson().fromJson<CookieBean>(SPUtils.get("COOKIE_" + url.host()), CookieBean::class.java)
-                ?: CookieBean(ArrayList<Cookie>())
-        LogUtil.e("加载cookie->${fromJson.toJson()}")
-        return fromJson.list
+
+        //过期的Cookie
+        val invalidCookies: MutableList<Cookie> = ArrayList()
+        //有效的Cookie
+        val validCookies: MutableList<Cookie> = ArrayList()
+
+        for (cookie in mCookies) {
+            if (cookie.expiresAt() < System.currentTimeMillis()) {
+                //过期
+                invalidCookies.add(cookie)
+            } else if (cookie.matches(url)) {
+                //匹配url
+                validCookies.add(cookie)
+            }
+        }
+
+        mCookies.removeAll(invalidCookies)
+
+        LogUtil.e("加载cookie->${validCookies.toJson()}")
+        return mCookies
     }
 
     data class CookieBean(val list: MutableList<Cookie>) {

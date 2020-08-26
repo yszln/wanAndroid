@@ -5,7 +5,9 @@ import com.yszln.mvvmkt.ui.article.ArticleItemBean
 import com.yszln.mvvmkt.ui.main.discover.bean.DiscoverBean
 import com.yszln.mvvmkt.ui.main.home.bean.BannerItemBean
 import com.yszln.mvvmkt.ui.main.knowledge.KnowLedgeItemBean
+import com.yszln.mvvmkt.ui.main.mine.bean.MyArticleBean
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
+import com.yszln.mvvmkt.widget.cate.CateItemBean
 import retrofit2.http.*
 
 /**
@@ -21,10 +23,28 @@ interface ApiServer {
     suspend fun getHomeArticles(@Path("page") page: Int): BaseBean<PageBean<ArticleItemBean>>
 
     /**
+     * 项目分类
+     */
+    @GET("/project/tree/json")
+    suspend fun getProjectTree(): BaseBean<List<CateItemBean>>
+
+    /**
+     * 项目文章列表
+     */
+    @GET("/project/list/{page}/json")
+    suspend fun getProject(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): BaseBean<PageBean<ArticleItemBean>>
+
+    /**
      * 按照在实体性分类获取文章
      */
     @GET("/article/list/{page}/json")
-    suspend fun getCateArticle(@Path("page") page: Int,@Query("cid") cid: String?): BaseBean<PageBean<ArticleItemBean>>
+    suspend fun getCateArticle(
+        @Path("page") page: Int,
+        @Query("cid") cid: String?
+    ): BaseBean<PageBean<ArticleItemBean>>
 
     /**
      * 置顶文章
@@ -61,6 +81,24 @@ interface ApiServer {
     ): BaseBean<UserInfo>
 
     /**
+     * 退出登录
+     */
+    @GET("/user/logout/json")
+    suspend fun loginOut(): BaseBean<Any>
+
+    /**
+     * 自己分享的文章
+     */
+    @GET("/user/lg/private_articles/{page}/json")
+    suspend fun myShareArticle(@Path("page")page: Int) :BaseBean<MyArticleBean>
+
+    /**
+     * 收藏的文章
+     */
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectArticle(@Path("page")page: Int) :BaseBean<PageBean<ArticleItemBean>>
+
+    /**
      * 知识体系分类
      */
     @GET("tree/json")
@@ -70,5 +108,5 @@ interface ApiServer {
      * 常用网站
      */
     @GET("/friend/json")
-    suspend fun frequentlyUsedWebsites() :BaseBean<List<DiscoverBean>>
+    suspend fun frequentlyUsedWebsites(): BaseBean<List<DiscoverBean>>
 }

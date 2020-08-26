@@ -6,15 +6,20 @@ import com.google.gson.Gson
 import com.yszln.lib.fragment.BaseVMFragment
 import com.yszln.lib.utils.SPUtils
 import com.yszln.lib.utils.StatusBarUtil
+import com.yszln.lib.utils.start
+import com.yszln.lib.utils.toast
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.login.LoginActivity
+import com.yszln.mvvmkt.ui.main.mine.activity.MyArticleArticleActivity
+import com.yszln.mvvmkt.ui.main.mine.activity.MyCollectionArticleActivity
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
 import com.yszln.mvvmkt.ui.main.mine.viewmodel.MineViewModel
 import kotlinx.android.synthetic.main.fragment_mine.*
 
+
 class MineFragment : BaseVMFragment<MineViewModel>() {
 
-    var mUserInfo:UserInfo?=null
+    var mUserInfo: UserInfo? = null
 
 
     override fun refreshData() {
@@ -28,24 +33,44 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
         StatusBarUtil.setPaddingSmart(mContext, layout)
 
         mine_user_login.setOnClickListener {
-            if(null==mUserInfo){
+            if (null == mUserInfo) {
                 //登录
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
-            }else{
+            } else {
+                mViewModel.loginOut()
                 //退出登录
-                SPUtils.put("LOGIN_USER", "")
-                mUserInfo=null
-                showLoginUser();
+
+
             }
 
         }
 
     }
 
+    override fun initClick() {
+        mine_article.setOnClickListener {
+           start(MyArticleArticleActivity::class.java)
+        }
+        mine_collect.setOnClickListener {
+            start(MyCollectionArticleActivity::class.java)
+        }
+        mine_integral.setOnClickListener {
+
+        }
+    }
+
     override fun observe() {
         mViewModel.isLogin.observe(this, Observer {
-            showLoginUser()
+            if (it) {
+                //登录成功
+                "登录成功".toast()
+            } else {
+                //退出登录
+                mUserInfo = null
+                "退出登录成功".toast()
+            }
+            showLoginUser();
         })
     }
 

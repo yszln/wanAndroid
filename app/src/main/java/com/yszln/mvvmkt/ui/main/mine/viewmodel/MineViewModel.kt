@@ -25,6 +25,16 @@ class MineViewModel : RefreshViewModel() {
 
     }
 
+    fun loginOut(){
+        launch(
+            block = {
+                Api.mApiServer.loginOut()
+                SPUtils.put("LOGIN_USER", "")
+                isLogin.value=false
+            }
+        )
+    }
+
 
 
 }

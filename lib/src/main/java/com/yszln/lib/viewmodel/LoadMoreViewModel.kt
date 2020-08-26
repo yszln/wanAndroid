@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 open class LoadMoreViewModel : RefreshViewModel() {
 
-    protected var page = 0
+    protected var page = -1
 
     /**
      * 加载状态

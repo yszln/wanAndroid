@@ -22,8 +22,8 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
     private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         initViewModel()
+        super.onCreate(savedInstanceState)
         initRefresh()
         observe()
         initClick()

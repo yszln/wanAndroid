@@ -19,5 +19,6 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:paddingVertical="@dimen/_10dp"
+        android:textSize="@dimen/_11sp"
         android:text="TextView" />
 </LinearLayout>

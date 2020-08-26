@@ -17,9 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginTop="@dimen/_10dp"
-            android:text="author"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="author" />
 
         <TextView
             android:id="@+id/mine_user_login"
@@ -59,15 +59,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
             android:layout_marginTop="@dimen/_30dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mine_user_name">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1dp"
                 android:background="@color/gray_ee" />
+
             <TextView
+                android:id="@+id/mine_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -81,17 +84,21 @@
                 android:background="@color/gray_ee" />
 
             <TextView
+                android:id="@+id/mine_collect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/_15dp"
                 android:paddingVertical="@dimen/_15dp"
                 android:text="我的收藏" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1dp"
                 android:background="@color/gray_ee" />
+
             <TextView
+                android:id="@+id/mine_integral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

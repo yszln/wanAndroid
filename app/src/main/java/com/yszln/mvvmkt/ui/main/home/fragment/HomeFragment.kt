@@ -14,7 +14,6 @@ import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.home.vm.HomeViewModel
 import com.yszln.mvvmkt.ui.search.SearchActivity
 import com.yszln.mvvmkt.widget.banner.MyBannerAdapter
-import com.yszln.mvvmkt.widget.cate.CateItemBean
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -28,25 +27,9 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     override fun refreshData() {
         mViewModel.getBanner()
+        mViewModel.getProjectTree()
 
 
-        homeCate.setData(ArrayList<CateItemBean>().apply {
-            add(CateItemBean("广场"))
-            add(CateItemBean("导航"))
-            add(CateItemBean("体系"))
-            add(CateItemBean("项目"))
-            add(CateItemBean("公众号"))
-            add(CateItemBean("广场"))
-            add(CateItemBean("导航"))
-            add(CateItemBean("体系"))
-            add(CateItemBean("项目"))
-            add(CateItemBean("公众号"))
-            add(CateItemBean("广场"))
-            add(CateItemBean("导航"))
-            add(CateItemBean("体系"))
-            add(CateItemBean("项目"))
-            add(CateItemBean("公众号"))
-        })
     }
 
 
@@ -78,7 +61,6 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         }
 
 
-
     }
 
     private fun initBanner() {
@@ -89,7 +71,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     }
 
 
-    override fun initClick(){
+    override fun initClick() {
         homeSearch.setOnClickListener {
             val intent = Intent(activity, SearchActivity::class.java)
 
@@ -109,6 +91,9 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
                 homeBanner.adapter = MyBannerAdapter(it)
             })
 
+            cates.observe(this@HomeFragment, Observer {
+                homeCate.setData(it)
+            })
         }
 
 

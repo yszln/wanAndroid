@@ -23,7 +23,7 @@
         android:id="@+id/item_rv_home_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_16dp"
         android:textSize="@dimen/_12sp"
         android:paddingLeft="@dimen/_12dp"
         android:textColor="@color/gray"
@@ -45,7 +45,7 @@
     <View
         android:id="@+id/item_rv_home_line"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_5dp"
+        android:layout_height="@dimen/_1dp"
         android:background="@color/gray_ef"
         android:alpha="0.5"
         android:layout_marginTop="@dimen/_15dp"

@@ -54,6 +54,18 @@ class HomeArticleViewModel : LoadMoreViewModel() {
                     if (cateId == 0) null else cateId.toString()
                 ).data().datas
             }
+            4 -> {
+                //项目
+                return Api.mApiServer.getProject(page,cateId).data().datas
+            }
+            5->{
+                //自己的文章
+                return Api.mApiServer.myShareArticle(page).data().shareArticles.datas
+            }
+            6->{
+                //收藏的文章
+                return Api.mApiServer.getCollectArticle(page).data().datas
+            }
             else -> {
                 //首页
                 return Api.mApiServer.getHomeArticles(page).data().datas;
