@@ -7,8 +7,11 @@ import androidx.viewpager.widget.ViewPager
 
 class NoScrollViewPager(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
 
-    override fun onTouchEvent(ev: MotionEvent?): Boolean {
-        return super.onTouchEvent(ev)
-    }
+    //禁止滑动
+    override fun onInterceptTouchEvent(ev: MotionEvent?) = false
 
+    override fun setCurrentItem(item: Int) {
+        //取消动画
+        super.setCurrentItem(item, false)
+    }
 }
