@@ -16,9 +16,11 @@ class HomeArticleViewModel : LoadMoreViewModel() {
 
 
     fun refreshHomeArticle(keyWord: String = "", cateId: Int = 0) {
+        mLoadingStatus.value=true
         page = 1
         launch(
             block = {
+                mLoadingStatus.value=false
                 val homeArticles = getArticle(keyWord, cateId)
                 articleList.value = mutableListOf<ArticleItemBean>().apply {
                     addAll(homeArticles)
@@ -26,7 +28,7 @@ class HomeArticleViewModel : LoadMoreViewModel() {
                 refreshComplete()
             },
             error = {
-
+                mLoadingStatus.value=false
             }
 
         )

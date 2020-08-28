@@ -1,5 +1,6 @@
 package com.yszln.lib.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yszln.lib.network.ApiException
@@ -24,6 +25,9 @@ typealias Cancel = suspend (e: Exception) -> Unit
 
 open class BaseViewModel : ViewModel() {
 
+    var mLoadingStatus=MutableLiveData<Boolean>()
+
+
     /**
      * 创建并执行协程
      * @param error 错误的处理
@@ -36,11 +40,14 @@ open class BaseViewModel : ViewModel() {
         cancel: Cancel? = null,
         showToast: Boolean = true
     ): Job {
+        mLoadingStatus.value=true
         return viewModelScope.launch {
             try {
                 //执行block
                 block.invoke()
+                mLoadingStatus.value=false
             } catch (e: Exception) {
+                mLoadingStatus.value=false
                 if (e is CancellationException) {
                     //取消
                     cancel?.invoke(e)

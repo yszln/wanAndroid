@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yszln.lib.R
+import com.yszln.lib.loading.LoadingDialog
 import com.yszln.lib.viewmodel.RefreshViewModel
 import java.lang.reflect.ParameterizedType
 
@@ -15,15 +16,18 @@ import java.lang.reflect.ParameterizedType
  * @history:
  */
 abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, IBaseView {
 
     protected lateinit var mViewModel: VM
+
+    private lateinit var loadingDialog: LoadingDialog
 
     private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initViewModel()
         super.onCreate(savedInstanceState)
+        loadingDialog = LoadingDialog(this)
         initRefresh()
         observe()
         initClick()
@@ -40,9 +44,16 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
             setOnRefreshListener(this@BaseVMActivity)
         }
 
-        mViewModel.mRefreshStatus.observe(this, Observer {
-            refreshEnd()
-        })
+        mViewModel.apply {
+            mRefreshStatus.observe(this@BaseVMActivity, Observer {
+                refreshEnd()
+            })
+            mLoadingStatus.observe(this@BaseVMActivity, Observer {
+                if (it) showLoading() else dismissLoading()
+
+            })
+        }
+
 
     }
 
@@ -66,6 +77,13 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
      */
     abstract fun refreshData()
 
+    override fun showLoading() {
+        loadingDialog.show()
+    }
+
+    override fun dismissLoading() {
+        loadingDialog.dismiss()
+    }
 
 
     /**

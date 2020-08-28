@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yszln.lib.R
+import com.yszln.lib.activity.IBaseView
+import com.yszln.lib.loading.LoadingDialog
 import com.yszln.lib.viewmodel.RefreshViewModel
 import java.lang.reflect.ParameterizedType
 
@@ -17,7 +19,7 @@ import java.lang.reflect.ParameterizedType
  * @history:
  */
 abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
-    SwipeRefreshLayout.OnRefreshListener {
+    SwipeRefreshLayout.OnRefreshListener, IBaseView {
 
     protected lateinit var mViewModel: VM
 
@@ -25,11 +27,14 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
 
     private var isFirstLoad = true // 是否第一次加载
 
+    private lateinit var loadingDialog: LoadingDialog
+
     protected lateinit var mContext: Context;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = activity!!
+        loadingDialog = LoadingDialog(mContext)
     }
 
     override fun onResume() {
@@ -53,6 +58,14 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
 
     }
 
+    override fun showLoading() {
+        loadingDialog.show()
+    }
+
+    override fun dismissLoading() {
+        loadingDialog.dismiss()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -69,10 +82,15 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
             setOnRefreshListener(this@BaseVMFragment)
 
         }
+        mViewModel.apply {
+            mRefreshStatus.observe(this@BaseVMFragment, Observer {
+                refreshEnd()
+            })
+            mLoadingStatus.observe(this@BaseVMFragment, Observer {
+                if (it) showLoading() else dismissLoading()
 
-        mViewModel.mRefreshStatus.observe(this, Observer {
-            refreshEnd()
-        })
+            })
+        }
 
     }
 

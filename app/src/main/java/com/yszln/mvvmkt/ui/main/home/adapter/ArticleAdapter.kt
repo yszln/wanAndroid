@@ -4,6 +4,7 @@ import android.content.Intent
 import android.text.Html
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.yszln.lib.BaseApplication
 import com.yszln.lib.adapter.CommonViewHolder
 import com.yszln.lib.adapter.LoadMoreAdapter
 import com.yszln.mvvmkt.R
@@ -15,7 +16,9 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
     init {
         setOnItemClickListener { _: BaseQuickAdapter<*, *>, view: View, position: Int ->
 
-            CommonWebActivity.start(data[position].link)
+            val intent = Intent(BaseApplication.mContext, CommonWebActivity::class.java)
+            intent.putExtra("url", data[position].link)
+            context.startActivity(intent)
         }
     }
 
@@ -23,7 +26,7 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
         holder.setText(
             R.id.item_rv_home_title,
             Html.fromHtml((holder.adapterPosition + 1).toString() + ".\u2000" + item.title)
-        ).setText(R.id.item_rv_home_time,item.niceDate)
-            .setText(R.id.item_rv_home_author,item.shareUser)
+        ).setText(R.id.item_rv_home_time, item.niceDate)
+            .setText(R.id.item_rv_home_author, item.shareUser)
     }
 }
