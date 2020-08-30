@@ -68,6 +68,10 @@ class HomeArticleViewModel : LoadMoreViewModel() {
                 //收藏的文章
                 return Api.mApiServer.getCollectArticle(page).data().datas
             }
+            7->{
+                //广场
+                return Api.mApiServer.getUserArticle(page).data().datas
+            }
             else -> {
                 //首页
                 return Api.mApiServer.getHomeArticles(page).data().datas;

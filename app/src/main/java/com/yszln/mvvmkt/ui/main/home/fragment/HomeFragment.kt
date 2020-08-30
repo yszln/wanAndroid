@@ -54,6 +54,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         val fragmentAdapter = BaseFragmentAdapter<BaseFragment>(childFragmentManager)
         fragmentAdapter.addFragment(HomeArticleFragment.newInstance(0, 1), "首页")
         fragmentAdapter.addFragment(HomeArticleFragment.newInstance(1, 0), "置顶")
+        fragmentAdapter.addFragment(HomeArticleFragment.newInstance(7, 1), "广场")
         mViewPager.adapter = fragmentAdapter
         mTabLayout.setupWithViewPager(mViewPager, false)
         for (i in 0..fragmentAdapter.count) {

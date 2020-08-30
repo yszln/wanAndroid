@@ -10,6 +10,7 @@ import com.yszln.lib.utils.start
 import com.yszln.lib.utils.toast
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.login.LoginActivity
+import com.yszln.mvvmkt.ui.main.mine.activity.IntegralActivity
 import com.yszln.mvvmkt.ui.main.mine.activity.MyArticleArticleActivity
 import com.yszln.mvvmkt.ui.main.mine.activity.MyCollectionArticleActivity
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
@@ -50,13 +51,16 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
 
     override fun initClick() {
         mine_article.setOnClickListener {
+            //我的文章
            start(MyArticleArticleActivity::class.java)
         }
         mine_collect.setOnClickListener {
+            //我的收藏
             start(MyCollectionArticleActivity::class.java)
         }
         mine_integral.setOnClickListener {
-
+            //我的积分
+            start(IntegralActivity::class.java)
         }
     }
 

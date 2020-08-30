@@ -5,6 +5,7 @@ import com.yszln.mvvmkt.ui.article.ArticleItemBean
 import com.yszln.mvvmkt.ui.main.discover.bean.DiscoverBean
 import com.yszln.mvvmkt.ui.main.home.bean.BannerItemBean
 import com.yszln.mvvmkt.ui.main.knowledge.KnowLedgeItemBean
+import com.yszln.mvvmkt.ui.main.mine.bean.IntegralBean
 import com.yszln.mvvmkt.ui.main.mine.bean.MyArticleBean
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
 import com.yszln.mvvmkt.widget.cate.CateItemBean
@@ -53,6 +54,12 @@ interface ApiServer {
     suspend fun getTopArticles(): BaseBean<List<ArticleItemBean>>
 
     /**
+     * 广场
+     */
+    @GET("/user_article/list/{page}/json")
+    suspend fun getUserArticle(@Path("page")page: Int):BaseBean<PageBean<ArticleItemBean>>
+
+    /**
      * 搜索
      * @param page 页码
      * @param keyWord 关键字
@@ -81,6 +88,16 @@ interface ApiServer {
     ): BaseBean<UserInfo>
 
     /**
+     * 注册
+     */
+    @POST("/user/register")
+    @FormUrlEncoded
+    suspend fun register(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
+    ): BaseBean<UserInfo>
+    /**
      * 退出登录
      */
     @GET("/user/logout/json")
@@ -90,13 +107,13 @@ interface ApiServer {
      * 自己分享的文章
      */
     @GET("/user/lg/private_articles/{page}/json")
-    suspend fun myShareArticle(@Path("page")page: Int) :BaseBean<MyArticleBean>
+    suspend fun myShareArticle(@Path("page") page: Int): BaseBean<MyArticleBean>
 
     /**
      * 收藏的文章
      */
     @GET("/lg/collect/list/{page}/json")
-    suspend fun getCollectArticle(@Path("page")page: Int) :BaseBean<PageBean<ArticleItemBean>>
+    suspend fun getCollectArticle(@Path("page") page: Int): BaseBean<PageBean<ArticleItemBean>>
 
     /**
      * 知识体系分类
@@ -109,4 +126,24 @@ interface ApiServer {
      */
     @GET("/friend/json")
     suspend fun frequentlyUsedWebsites(): BaseBean<List<DiscoverBean>>
+
+    /**
+     * 我的积分
+     */
+    @GET("/lg/coin/userinfo/json")
+    suspend fun getUserIntegral(): BaseBean<IntegralBean>
+
+    /**
+     * 积分记录
+     */
+    @GET("user/{userId}/articles/{page}")
+    suspend fun getUserIntegralInfo(@Path("userId") userId: Int, @Path("page") page: Int):BaseBean<PageBean<IntegralBean>>
+
+    /**
+     * 积分排行榜
+     */
+    @GET("/coin/rank/{page}/json")
+    suspend fun getUserIntegralRank(@Path("page")page:Int)
+
+
 }

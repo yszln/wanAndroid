@@ -12,20 +12,32 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.SplashActivity" android:theme="@style/Splash">
+        <activity
+            android:name=".ui.project.ProjectActivity"
+            android:label="项目" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="登录" />
+        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.project.ProjectActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.search.SearchActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.common.CommonWebActivity" />
-        <activity android:name=".ui.main.mine.activity.MyArticleArticleActivity" />
-        <activity android:name=".ui.main.mine.activity.MyCollectionArticleActivity" />
+        <activity
+            android:name=".ui.common.CommonWebActivity"
+            android:label="浏览器" />
+        <activity
+            android:name=".ui.main.mine.activity.MyArticleArticleActivity"
+            android:label="我分享的文章" />
+        <activity
+            android:name=".ui.main.mine.activity.MyCollectionArticleActivity"
+            android:label="我收藏的文章" />
+        <activity
+            android:name=".ui.main.mine.activity.IntegralActivity"
+            android:label="我的积分" />
     </application>
 
 </manifest>
