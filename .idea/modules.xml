@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="MVVMKt/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/lib.iml" group="MVVMKt/lib" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/wanAndroid-MVVMKt.iml" filepath="$PROJECT_DIR$/.idea/modules/wanAndroid-MVVMKt.iml" group="MVVMKt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/wanAndroid-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/wanAndroid-app.iml" group="MVVMKt/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/wanAndroid-lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/wanAndroid-lib.iml" group="MVVMKt/lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/work-wanAndroid-MVVMKt.iml" filepath="$PROJECT_DIR$/.idea/modules/work-wanAndroid-MVVMKt.iml" group="MVVMKt" />
     </modules>
   </component>
 </project>
