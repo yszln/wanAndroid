@@ -42,7 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_300dp"
-                    android:paddingHorizontal="@dimen/_12dp" />
+                    android:paddingHorizontal="@dimen/_12dp"
+                    app:layout_collapseMode="pin" />
 
                 <FrameLayout
                     android:id="@+id/homeTitle"
@@ -95,8 +96,8 @@
                         android:drawablePadding="@dimen/_10dp"
                         android:paddingHorizontal="@dimen/_10dp"
                         android:paddingVertical="@dimen/_5dp"
-                        android:textColor="@color/gray_ed"
-                        android:text="搜索" />
+                        android:text="搜索"
+                        android:textColor="@color/gray_ed" />
                 </LinearLayout>
 
 
@@ -104,9 +105,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_70dp"
                     android:layout_gravity="top"
-                    android:visibility="invisible"
-                    android:clickable="false"
                     android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:visibility="invisible"
                     app:layout_collapseMode="pin">
 
                 </androidx.appcompat.widget.Toolbar>
@@ -117,10 +118,10 @@
                 android:id="@+id/mTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/title_height"
-                app:tabSelectedTextColor="@color/textColor"
                 app:tabIndicatorFullWidth="false"
                 app:tabIndicatorHeight="@dimen/_4dp"
-                app:tabTextColor="@color/textColor"/>
+                app:tabSelectedTextColor="@color/textColor"
+                app:tabTextColor="@color/textColor" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager

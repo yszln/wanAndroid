@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+   <TextView
+       android:id="@+id/menu_copy"
+       android:layout_width="match_parent"
+       android:text="复制链接"
+       android:paddingVertical="@dimen/_15dp"
+       android:paddingHorizontal="@dimen/_20dp"
+       android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/menu_share_wechat"
+        android:layout_width="match_parent"
+        android:text="分享到微信"
+        android:paddingVertical="@dimen/_15dp"
+        android:paddingHorizontal="@dimen/_20dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/menu_share_qq"
+        android:layout_width="match_parent"
+        android:text="分享到QQ"
+        android:paddingVertical="@dimen/_15dp"
+        android:paddingHorizontal="@dimen/_20dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/menu_system_view"
+        android:layout_width="match_parent"
+        android:text="使用系统浏览器打开"
+        android:paddingVertical="@dimen/_15dp"
+        android:paddingHorizontal="@dimen/_20dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -94,6 +94,7 @@ class CateView @JvmOverloads constructor(
 
     fun setData(list: List<CateItemBean>) {
         list?.run {
+            cateProgressView.setProgress(0f)
             recyclerView.layoutManager = if (size >= 2 * itemCount) {
                 lineCount = (size / 2f + .5f).toInt()
                 //两排

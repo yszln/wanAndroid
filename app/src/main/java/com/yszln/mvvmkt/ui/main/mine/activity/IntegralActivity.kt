@@ -3,8 +3,6 @@ package com.yszln.mvvmkt.ui.main.mine.activity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yszln.lib.activity.BaseLoadMoreActivity
-import com.yszln.lib.activity.BaseVMActivity
-import com.yszln.lib.adapter.LoadMore
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.mine.adapter.IntegralAdapter
 import com.yszln.mvvmkt.ui.main.mine.viewmodel.IntegralViewModel
@@ -22,6 +20,7 @@ class IntegralActivity : BaseLoadMoreActivity<IntegralViewModel>() {
 
     override fun refreshData() {
         mViewModel.getUserIntegral()
+        mViewModel.getUserIntegralInfo()
     }
 
     override fun initView() {
@@ -32,13 +31,12 @@ class IntegralActivity : BaseLoadMoreActivity<IntegralViewModel>() {
     override fun observe() {
         mViewModel.apply {
             mIntegralList.observe(this@IntegralActivity, Observer {
-                mAdapter.setList(it)
+                mAdapter.addData(it)
             })
 
             mIntegral.observe(this@IntegralActivity, Observer {
-                integralCountTv.text = "积分:${it.coinCount}"
+                integralCountTv.text = "总积分:${it.coinCount}"
                 mUserId=it.userId
-                mViewModel.getUserIntegralInfo(mUserId)
             })
         }
 
@@ -48,6 +46,6 @@ class IntegralActivity : BaseLoadMoreActivity<IntegralViewModel>() {
     override fun loadMore()=mAdapter
 
     override fun loadMoreData() {
-        mViewModel.getUserIntegralInfo(mUserId)
+        mViewModel.getUserIntegralInfo()
     }
 }

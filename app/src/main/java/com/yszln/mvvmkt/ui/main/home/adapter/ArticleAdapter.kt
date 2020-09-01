@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.Html
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.yszln.lib.BaseApplication
 import com.yszln.lib.adapter.CommonViewHolder
 import com.yszln.lib.adapter.LoadMoreAdapter
 import com.yszln.mvvmkt.R
@@ -16,10 +15,12 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
     init {
         setOnItemClickListener { _: BaseQuickAdapter<*, *>, view: View, position: Int ->
 
-            val intent = Intent(BaseApplication.mContext, CommonWebActivity::class.java)
+            val intent = Intent(context, CommonWebActivity::class.java)
             intent.putExtra("url", data[position].link)
             context.startActivity(intent)
         }
+        setList(null)
+        setEmptyView(R.layout.layout_empty)
     }
 
     override fun convert(holder: CommonViewHolder, item: ArticleItemBean) {

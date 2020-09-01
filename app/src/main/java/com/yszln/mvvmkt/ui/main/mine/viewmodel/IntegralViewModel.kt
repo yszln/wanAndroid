@@ -21,11 +21,14 @@ class IntegralViewModel : LoadMoreViewModel() {
         )
     }
 
-    fun getUserIntegralInfo(userId: Int) {
+    fun getUserIntegralInfo() {
+        page++
         launch(
             block = {
-                val data = Api.mApiServer.getUserIntegralInfo(userId, page).data().datas
-                mIntegralList.value?.addAll(data)
+                val data = Api.mApiServer.getUserIntegralInfo(page).data().datas
+                mIntegralList.value= mutableListOf<IntegralBean>().apply {
+                    addAll(data)
+                }
             }
         )
     }

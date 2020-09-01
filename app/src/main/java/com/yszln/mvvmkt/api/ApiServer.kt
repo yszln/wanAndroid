@@ -136,8 +136,8 @@ interface ApiServer {
     /**
      * 积分记录
      */
-    @GET("user/{userId}/articles/{page}")
-    suspend fun getUserIntegralInfo(@Path("userId") userId: Int, @Path("page") page: Int):BaseBean<PageBean<IntegralBean>>
+    @GET("lg/coin/list/{page}/json")
+    suspend fun getUserIntegralInfo( @Path("page") page: Int):BaseBean<PageBean<IntegralBean>>
 
     /**
      * 积分排行榜

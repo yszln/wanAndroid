@@ -38,6 +38,9 @@ class CommonWebActivity : BaseActivity(), DownloadListener {
     }
 
     private fun initWebView() {
+        titleBar.mMoreIv.setOnClickListener {
+            MenuDialog().showNow(supportFragmentManager,"share")
+        }
         webView.webChromeClient = MyChromeClient()
         webView.webViewClient = MyWebViewClient()
         webView.setDownloadListener(this)
