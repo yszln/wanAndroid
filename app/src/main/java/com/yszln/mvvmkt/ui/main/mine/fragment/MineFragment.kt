@@ -3,6 +3,7 @@ package com.yszln.mvvmkt.ui.main.mine.fragment
 import android.content.Intent
 import androidx.lifecycle.Observer
 import com.google.gson.Gson
+import com.yszln.lib.bus.LiveDataBus
 import com.yszln.lib.fragment.BaseVMFragment
 import com.yszln.lib.utils.SPUtils
 import com.yszln.lib.utils.StatusBarUtil
@@ -15,6 +16,7 @@ import com.yszln.mvvmkt.ui.main.mine.activity.MyArticleArticleActivity
 import com.yszln.mvvmkt.ui.main.mine.activity.MyCollectionArticleActivity
 import com.yszln.mvvmkt.ui.main.mine.bean.UserInfo
 import com.yszln.mvvmkt.ui.main.mine.viewmodel.MineViewModel
+import com.yszln.mvvmkt.utils.UserUtils
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 
@@ -28,6 +30,8 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
             refreshEnd()
         }, 2000)
         showLoginUser()
+
+
     }
 
     override fun initView() {
@@ -41,25 +45,25 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
             } else {
                 mViewModel.loginOut()
                 //退出登录
-
-
             }
-
         }
-
     }
 
     override fun initClick() {
+
         mine_article.setOnClickListener {
             //我的文章
+           if( UserUtils.checkLogin(context))
            start(MyArticleArticleActivity::class.java)
         }
         mine_collect.setOnClickListener {
             //我的收藏
+            if( UserUtils.checkLogin(context))
             start(MyCollectionArticleActivity::class.java)
         }
         mine_integral.setOnClickListener {
             //我的积分
+            if( UserUtils.checkLogin(context))
             start(IntegralActivity::class.java)
         }
     }
@@ -73,8 +77,16 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
                 //退出登录
                 mUserInfo = null
                 "退出登录成功".toast()
+                refreshData()
             }
             showLoginUser();
+        })
+
+        LiveDataBus.getChannel("login").observe(this, Observer { login->
+            var isLogin=login as Boolean;
+            if(isLogin){
+                refreshData()
+            }
         })
     }
 

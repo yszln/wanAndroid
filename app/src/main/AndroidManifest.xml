@@ -12,19 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.project.ProjectActivity"
             android:label="项目" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="登录" />
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.search.SearchActivity" android:label="搜索" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.common.CommonWebActivity"

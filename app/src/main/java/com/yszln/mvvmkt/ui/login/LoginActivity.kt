@@ -2,6 +2,7 @@ package com.yszln.mvvmkt.ui.login
 
 import androidx.lifecycle.Observer
 import com.yszln.lib.activity.BaseVMActivity
+import com.yszln.lib.bus.LiveDataBus
 import com.yszln.lib.utils.toast
 import com.yszln.mvvmkt.R
 import com.yszln.mvvmkt.ui.main.mine.viewmodel.MineViewModel
@@ -17,8 +18,10 @@ class LoginActivity : BaseVMActivity<MineViewModel>() {
     override fun observe() {
         mViewModel.isLogin.observe(this, Observer {
             if (it) {
+                LiveDataBus.getChannel("login").value = true
                 //登陆成功
                 finish()
+
             }
         })
     }

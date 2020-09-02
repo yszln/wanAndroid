@@ -1,6 +1,5 @@
 package com.yszln.lib.utils
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
@@ -28,10 +27,12 @@ fun Any.toJson(): String {
     return JsonUtils.toJson(this)
 }
 
-fun Activity.start(clazz: Class<*>) {
+fun Context.start(clazz: Class<*>) {
     startActivity(Intent(this, clazz))
 }
 
+
 fun Fragment.start(clazz: Class<*>) {
-    startActivity(Intent(this.context, clazz))
+    context?.start(clazz)
 }
+
