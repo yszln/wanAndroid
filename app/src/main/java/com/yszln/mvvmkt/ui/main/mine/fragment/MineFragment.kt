@@ -53,18 +53,18 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
 
         mine_article.setOnClickListener {
             //我的文章
-           if( UserUtils.checkLogin(context))
-           start(MyArticleArticleActivity::class.java)
+            if (UserUtils.checkLogin(context))
+                start(MyArticleArticleActivity::class.java)
         }
         mine_collect.setOnClickListener {
             //我的收藏
-            if( UserUtils.checkLogin(context))
-            start(MyCollectionArticleActivity::class.java)
+            if (UserUtils.checkLogin(context))
+                start(MyCollectionArticleActivity::class.java)
         }
         mine_integral.setOnClickListener {
             //我的积分
-            if( UserUtils.checkLogin(context))
-            start(IntegralActivity::class.java)
+            if (UserUtils.checkLogin(context))
+                start(IntegralActivity::class.java)
         }
     }
 
@@ -82,9 +82,8 @@ class MineFragment : BaseVMFragment<MineViewModel>() {
             showLoginUser();
         })
 
-        LiveDataBus.getChannel("login").observe(this, Observer { login->
-            var isLogin=login as Boolean;
-            if(isLogin){
+        LiveDataBus.getChannel("login").observe(this, Observer { isLogin ->
+            if (isLogin as Boolean) {
                 refreshData()
             }
         })

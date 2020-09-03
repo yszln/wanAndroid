@@ -19,8 +19,7 @@ class ArticleAdapter : LoadMoreAdapter<ArticleItemBean>(R.layout.item_rv_home_ar
             intent.putExtra("url", data[position].link)
             context.startActivity(intent)
         }
-        setList(null)
-        setEmptyView(R.layout.layout_empty)
+
     }
 
     override fun convert(holder: CommonViewHolder, item: ArticleItemBean) {

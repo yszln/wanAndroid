@@ -19,7 +19,7 @@ class MyCollectionArticleActivity : BaseLoadMoreActivity<HomeArticleViewModel>()
     }
 
     override fun refreshData() {
-
+        mAdapter.clearData()
         mViewModel.refreshHomeArticle("", 0)
     }
 

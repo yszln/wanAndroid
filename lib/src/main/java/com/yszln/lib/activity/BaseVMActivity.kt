@@ -31,8 +31,7 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
         initRefresh()
         observe()
         initClick()
-        swipeRefreshLayout?.isRefreshing = true
-        refreshData()
+       onRefresh()
     }
 
     /**
@@ -61,6 +60,7 @@ abstract class BaseVMActivity<VM : RefreshViewModel> : BaseActivity(),
      * 刷新事件
      */
     override fun onRefresh() {
+        swipeRefreshLayout?.isRefreshing = true
         refreshData()
     }
 

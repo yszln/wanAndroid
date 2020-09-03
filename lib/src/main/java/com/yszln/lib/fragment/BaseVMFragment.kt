@@ -41,8 +41,7 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
         super.onResume()
         if (isFirstLoad) {
             //懒加载
-            swipeRefreshLayout?.isRefreshing = true
-            refreshData()
+           onRefresh()
             isFirstLoad = false;
         }
     }
@@ -98,6 +97,7 @@ abstract class BaseVMFragment<VM : RefreshViewModel> : BaseFragment(),
      * 刷新事件
      */
     override fun onRefresh() {
+        swipeRefreshLayout?.isRefreshing = true
         refreshData()
     }
 

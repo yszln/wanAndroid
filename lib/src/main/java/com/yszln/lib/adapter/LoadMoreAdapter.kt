@@ -11,9 +11,6 @@ import com.chad.library.adapter.base.module.LoadMoreModule
 */
 abstract class LoadMoreAdapter<T>(layoutResId: Int) :CommonAdapter<T>(layoutResId),LoadMoreModule,LoadMore{
 
-    override fun clearData() {
-        setList(ArrayList())
-    }
 
     override fun getLoadModule(): BaseLoadMoreModule {
         return loadMoreModule
